@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -8,6 +8,9 @@ import {
   ErrorMessage,
   ButtonSubmit,
 } from './ContactForm.styled';
+
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -23,14 +26,17 @@ const ContactSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onSubmitForm }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={ContactSchema}
       onSubmit={(values, actions) => {
         const { name, number } = values;
-        onSubmitForm(name, number);
+        dispatch(addContact(name, number));
+        // onSubmitForm(name, number);
         actions.resetForm();
       }}
     >
@@ -57,10 +63,6 @@ export const ContactForm = ({ onSubmitForm }) => {
       </Form>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
 };
 
 // import PropTypes from 'prop-types';
