@@ -5,17 +5,12 @@ import { useDispatch } from 'react-redux';
 
 export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
+  const onDeleteBtnClick = () => dispatch(deleteContact(id));
 
   return (
     <Item>
       {name}: {number}
-      <ButtonDelete
-        type="button"
-        onClick={() => {
-          dispatch(deleteContact(id));
-          // onDelete(id);
-        }}
-      >
+      <ButtonDelete type="button" onClick={onDeleteBtnClick}>
         Delete
       </ButtonDelete>
     </Item>

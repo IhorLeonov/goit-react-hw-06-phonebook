@@ -19,17 +19,7 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        const { name } = action.payload;
-
-        if (
-          state.contacts.some(
-            current => current.name.toLowerCase() === name.toLowerCase()
-          )
-        ) {
-          alert(`${name} is already in contacts.`);
-        } else {
-          state.contacts.push(action.payload);
-        }
+        state.contacts.push(action.payload);
       },
 
       prepare(name, number) {
@@ -44,7 +34,9 @@ const contactsSlice = createSlice({
     },
 
     deleteContact(state, action) {
-      return state.contacts.filter(contact => contact.id !== action.payload);
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload
+      );
     },
   },
 });
