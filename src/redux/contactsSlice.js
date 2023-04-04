@@ -41,6 +41,8 @@ const contactsSlice = createSlice({
   },
 });
 
+const rootReducer = combineReducers();
+
 const persistConfig = {
   key: 'contacts',
   storage,

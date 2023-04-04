@@ -12,8 +12,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-// const rootReducer = combineReducers();
-
 export const store = configureStore({
   reducer: {
     filter: filterSlice.reducer,
