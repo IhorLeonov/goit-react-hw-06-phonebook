@@ -19,7 +19,7 @@ export const App = () => {
         <ContactForm />
         <SecondTitle>Contacts</SecondTitle>
         <Filter />
-        {contacts.length < 1 ? (
+        {contacts?.length < 1 ? (
           <Notification message={'Phonebook is empty!'} />
         ) : (
           <ContactList />
